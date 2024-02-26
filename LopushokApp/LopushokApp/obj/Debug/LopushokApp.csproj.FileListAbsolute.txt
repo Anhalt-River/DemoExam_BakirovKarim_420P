@@ -18,3 +18,9 @@ C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoEx
 C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\obj\Debug\LopushokApp.exe
 C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\obj\Debug\LopushokApp.pdb
 C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\obj\Debug\LopushokApp_Content.g.cs
+C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\bin\Debug\EntityFramework.dll
+C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\bin\Debug\EntityFramework.xml
+C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Xakep\Desktop\TechSchool\Пре-демоэкзамен\Demo_Exam\DemoExam_BakirovKarim_420P\LopushokApp\LopushokApp\obj\Debug\LopushokApp.csproj.CopyComplete

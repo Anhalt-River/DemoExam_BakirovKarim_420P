@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 
 using LopushokApp.Materials.Classes;
 using System.Windows.Media.Media3D;
+using System.IO;
 
 namespace LopushokApp.Pages
 {
@@ -33,6 +34,8 @@ namespace LopushokApp.Pages
         List<ListProduct> all_products;
         private void BasicLoader()
         {
+            all_products = new List<ListProduct>();
+
             var row_products = App.Connection.Products.ToList();
             foreach (var row_prod in row_products)
             {
@@ -74,8 +77,12 @@ namespace LopushokApp.Pages
                 if (row_prod.Image != "нет")
                 {
                     string take_path = row_prod.Image;
-                    new_prod.ImagePath = $"/Materials{take_path}";
+                    new_prod.ImagePath = $"/Materials/Products/{take_path}";
                 }
+
+                new_prod.Image = new BitmapImage(new Uri($"pack://application:,,,{new_prod.ImagePath}"));
+
+
 
                 all_products.Add(new_prod);
             }
