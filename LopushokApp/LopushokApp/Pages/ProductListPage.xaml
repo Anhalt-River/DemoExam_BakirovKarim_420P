@@ -20,7 +20,12 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <TextBox x:Name="SearchBox" Text="Введите для поиска" MouseEnter="SearchBox_MouseEnter" MouseLeave="SearchBox_MouseLeave"/>
+            <TextBox x:Name="SearchBox" Text="Введите для поиска" 
+                     MouseEnter="SearchBox_MouseEnter" MouseLeave="SearchBox_MouseLeave">
+                <TextBox.ToolTip>
+                    <TextBlock Text="Кликните два раза мышью, чтобы найти"/>
+                </TextBox.ToolTip>
+            </TextBox>
 
             <ComboBox x:Name="SortBox" SelectedIndex="0">
                 <TextBlock Text="Нет сортировки" Margin="0"/>
@@ -59,7 +64,7 @@
                                     <TextBlock Text="{Binding NameProduct}" Margin="0"/>
                                 </StackPanel>
 
-                                <TextBlock Text="{Binding Articul}" Grid.Column="1" Grid.Row="1" Margin="0"/>
+                                <TextBlock Text="{Binding Articul}" Grid.Column="1" Grid.Row="1"/>
 
                                 <TextBlock Text="{Binding Materials}" Grid.Column="1" Grid.Row="2" Margin="0" MaxWidth="200" MaxHeight="50" FontSize="10" TextWrapping="Wrap"/>
 
