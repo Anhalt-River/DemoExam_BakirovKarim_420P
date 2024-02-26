@@ -73,6 +73,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Materials\Classes\ListProduct.cs" />
     <Compile Include="Pages\ProductListPage.xaml.cs">
       <DependentUpon>ProductListPage.xaml</DependentUpon>
     </Compile>
