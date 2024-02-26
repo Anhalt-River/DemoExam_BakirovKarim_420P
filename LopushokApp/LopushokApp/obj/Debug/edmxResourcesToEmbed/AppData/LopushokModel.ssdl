@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище LopushokBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="Id_Material" />
+    </Key>
+    <Property Name="Id_Material" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_Material" Type="nvarchar" MaxLength="100" />
+    <Property Name="Id_TypeMaterial" Type="int" />
+    <Property Name="Count_OnPackage" Type="int" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="10" />
+    <Property Name="Count_InWarehouse" Type="int" />
+    <Property Name="MinRemain" Type="int" />
+    <Property Name="Price" Type="float" />
+  </EntityType>
+  <EntityType Name="ProductMaterial">
+    <Key>
+      <PropertyRef Name="Id_ProductMaterial" />
+    </Key>
+    <Property Name="Id_ProductMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Articul_Product" Type="int" />
+    <Property Name="Id_Material" Type="int" />
+    <Property Name="Count_Material" Type="int" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Articul_Product" />
+    </Key>
+    <Property Name="Articul_Product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_Product" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MinPrice" Type="float" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_TypeProduct" Type="int" />
+    <Property Name="MinCount_Workers" Type="int" />
+    <Property Name="Worshop_Number" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Type_Product">
+    <Key>
+      <PropertyRef Name="Id_TypeProduct" />
+    </Key>
+    <Property Name="Id_TypeProduct" Type="int" Nullable="false" />
+    <Property Name="Name_TypeProduct" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TypeMaterial">
+    <Key>
+      <PropertyRef Name="Id_TypeMaterial" />
+    </Key>
+    <Property Name="Id_TypeMaterial" Type="int" Nullable="false" />
+    <Property Name="Name_TypeMaterial" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Materials_TypeMaterial">
+    <End Role="TypeMaterial" Type="Self.TypeMaterial" Multiplicity="0..1" />
+    <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeMaterial">
+        <PropertyRef Name="Id_TypeMaterial" />
+      </Principal>
+      <Dependent Role="Materials">
+        <PropertyRef Name="Id_TypeMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterial_Materials">
+    <End Role="Materials" Type="Self.Materials" Multiplicity="0..1" />
+    <End Role="ProductMaterial" Type="Self.ProductMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materials">
+        <PropertyRef Name="Id_Material" />
+      </Principal>
+      <Dependent Role="ProductMaterial">
+        <PropertyRef Name="Id_Material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterial_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="ProductMaterial" Type="Self.ProductMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Articul_Product" />
+      </Principal>
+      <Dependent Role="ProductMaterial">
+        <PropertyRef Name="Articul_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Type_Product">
+    <End Role="Type_Product" Type="Self.Type_Product" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_Product">
+        <PropertyRef Name="Id_TypeProduct" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Id_TypeProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище LopushokBaseModelContainer">
+    <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductMaterial" EntityType="Self.ProductMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type_Product" EntityType="Self.Type_Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeMaterial" EntityType="Self.TypeMaterial" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Materials_TypeMaterial" Association="Self.FK_Materials_TypeMaterial">
+      <End Role="TypeMaterial" EntitySet="TypeMaterial" />
+      <End Role="Materials" EntitySet="Materials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterial_Materials" Association="Self.FK_ProductMaterial_Materials">
+      <End Role="Materials" EntitySet="Materials" />
+      <End Role="ProductMaterial" EntitySet="ProductMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterial_Products" Association="Self.FK_ProductMaterial_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductMaterial" EntitySet="ProductMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Type_Product" Association="Self.FK_Products_Type_Product">
+      <End Role="Type_Product" EntitySet="Type_Product" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
