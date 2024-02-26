@@ -73,6 +73,7 @@ namespace LopushokApp.Pages
                         }
                     }
                 }
+                new_prod.Price = final_price.ToString();
 
                 if (row_prod.Image != "нет")
                 {
